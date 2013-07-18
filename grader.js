@@ -61,14 +61,15 @@ var checkHtmlFile = function(htmlfile, checksfile) {
 
  
 var url = function(url, checksfile) {
-  restler.get(url).on('complete', function(result))  
-  if (result instanceof Error) {
-    sys.puts('Error: ' + result.message);
-    this.retry(5000); // try again after 5 sec
-  } else {
+  restler.get(url).on('complete', function(result) {  
+    if (result instanceof Error) {
+      sys.puts('Error: ' + result.message);
+      this.retry(5000); // try again after 5 sec
+    } else {
     sys.puts(result);
-  }
-});
+    }
+  });
+};
 
 var clone = function(fn) {
     // Workaround for commander.js issue.
